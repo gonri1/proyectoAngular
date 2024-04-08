@@ -1,0 +1,35 @@
+<div class="row mt-5">
+    <nav class="navbar navbar-expand-lg navbar-alert bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">App angular</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="home">Informacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/formulario']">Formulario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="seleccion()" [routerLink]="['/productos']">Productos</a>
+                    </li>
+                    <select class="w-25" [(ngModel)]="seleccionCategoria">
+                        <option>laptops</option>
+                        <option>smartphones</option>
+                        <option>todos</option>
+                    </select>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/carts']">Tareas</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet><!-- esto va enlazado con las rutas de app-routing-module y las carga -->

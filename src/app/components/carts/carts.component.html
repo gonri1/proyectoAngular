@@ -1,0 +1,12 @@
+<div class="row m-5">
+    <h2 class="text-center text-primary m-3 mb-4">Listado de Tareas</h2>
+    @for (item of carts; track $index) {
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title bg-light border-bottom">Tarea {{item.id}}</h5>
+            <p class="card-text">{{item.todo}}</p>
+            <p class="card-text bg-primary text-white text-center">{{item.completed | serviceBol}} </p>
+        </div>
+    </div>
+    }
+</div>

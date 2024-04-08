@@ -1,0 +1,60 @@
+<div class="row">
+    <h2 class="text-center text-primary m-3 mb-4">Productos ->{{categoria}}</h2>
+</div>
+<div class="row ">
+    <div class="col-7 border border-success border-3 rounded bg-success-subtle mb-3">
+        <h4 class="text-primary">Carrito</h4>
+        <h4 class="border"><span style="font-weight: lighter;">Total-></span>{{calcularTotal()}}€</h4>
+        @for (item of arrayCarrito; track $index) {
+            <ol class="list-group list-group-flush bg-primary-subtle border-bottom">
+                <li class="list-group-item  bg-primary-subtle fw-semibold"><span style="font-weight: lighter;">{{$index+1}}-></span> {{item}}</li>
+              </ol>
+        }
+    </div>
+    <div class="col-4">
+        <button class="btn btn-danger me-3 mt-3" type="submit" (click)="reset()">Resetear</button>
+        <a class="btn btn-success mt-3" type="submit" (click)="comprar()" [routerLink]="['/carrito']">Comprar</a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- recorremos el array de objetos producto -->
+
+    @for (item of productos; track $index) {
+
+    @if(item.category == categoria){ <!-- if si es igual que la categoria, imprimimos -->
+    <div class="card" style="width: 18rem;">
+        <img [src]="item.thumbnail |imagenes" class="card-img-top" alt="..."><!-- atento al pipe -->
+        <div class="card-body">
+            <h5 class="card-title">{{item.title | uppercase}}</h5>
+            <p class="card-text">{{item.description}}.</p>
+            <p class="card-text">{{item.price}}€</p>
+            <input type="number" class="form-control m-2" value="{{item.price}}" [(ngModel)]="precio" hidden>
+            <button class="btn btn-primary mt-3 me-3" type="submit" (click)="sumarCantidad(item.price, item.title)" >Agregar</button>
+        </div>
+    </div>
+    }@else if (categoria == "todos") {<!-- else if para imprimir todos los productos -->
+    <div class="card" style="width: 18rem;">
+        <img [src]="item.thumbnail |imagenes" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title | uppercase}}</h5>
+            <p class="card-text">{{item.description}}.</p>
+            <p class="card-text">{{item.price}}€</p>
+            <button class="btn btn-primary mt-3 me-3" type="submit" (click)="sumarCantidad(item.price, item.title)">Agregar</button>
+        </div>
+    </div>
+    }@else if(!categoria){
+    <div class="card" style="width: 18rem;">
+        <img [src]="item.thumbnail |imagenes" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title | uppercase}}</h5>
+            <p class="card-text">{{item.description}}.</p>
+            <p class="card-text">{{item.price}}€</p>
+            <button class="btn btn-primary mt-3 me-3" type="submit" (click)="sumarCantidad(item.price, item.title)">Agregar</button>
+        </div>
+    </div>
+
+    }
+    }
+</div>
+<router-outlet></router-outlet><!-- esto va enlazado con las rutas de app-routing-module y las carga -->

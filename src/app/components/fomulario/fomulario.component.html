@@ -1,0 +1,34 @@
+<div class="container bg-light border-bottom">
+
+    <div class="row"> <!-- el formulario sin etiqueta <form> -->
+        <div class="col-8 border-end">
+            <h2 class="text-center text-primary m-3 border-bottom">Formulario Acceso</h2>
+            <input type="text" placeholder="nombre" class="form-control m-2" [(ngModel)]="nombreN">
+            <input type="password" placeholder="password" class="form-control m-2" [(ngModel)]="passwordP">
+           
+            <button class="btn btn-primary mt-3 me-3" type="submit" (click)="login()">Enviar</button>
+        </div>
+        <div class="col-3">
+            @if(usuarios.length> 0){ <!-- si lista de usuarios es mayor que 0 -->
+            <div class="alert alert-primary mt-4" role="alert">
+                La lista de Usuarios es de {{usuarios.length}}
+            </div>
+            }
+             <!-- DIRECTIVA ESTRUCTURAL FOR para imprimir los usuarios de la Interfaz Lista de usuarios -->
+            <h2 class="text-center text-primary m-3 border-bottom">Lista de Usuarios</h2>
+            @if (usuarios.length>0) {
+            <ul class="list-group">
+                @for (item of usuarios; track $index) {
+                <li class="list-group-item">{{item.nombre}}</li>
+                }
+            </ul>
+            }
+        </div>
+    </div>
+
+    <!-- SE PUEDE CARGAR HTML CON DIRECTIVAS ESTRUCTURALES, IF, ELSEIF, FOR, ETC.. -->
+
+
+    <!-- DIRECTIVA ESTRUCTURAL IF -->
+    
+</div>
